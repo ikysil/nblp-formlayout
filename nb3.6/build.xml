@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="nblayoutpack-tablelayout" basedir=".." default="all">
+
+    <!-- Sample Ant script to create a NetBeans module and test it. -->
+    <!-- Sample directory layout: -->
+    <!-- build.xml   - this file -->
+    <!-- src/        - sources (package root) -->
+    <!-- manifest.mf - module manifest -->
+    <!-- netbeans/   - build products (root matches NB installation root) -->
+    <!-- You will need to have src/ mounted in order for Java-related IDE functions to work properly. -->
+    <!-- You can do this most conveniently using the "View over a Filesystem" module. -->
+
+    <!-- Permit external customizations: -->
+    <property file="build.properties"/>
+
+    <property name="netbeans.home" location="t:/netbeans/3.6"/>
+    <!-- Set this according to your NB installation. -->
+    <property name="nb" location="${netbeans.home}"/>
+    <!-- This might instead be in ${netbeans.user}/ant/extra/nbantext.jar: -->
+    <property name="nbantext.jar" location="${nb}/ant/extra/nbantext.jar"/>
+    <!-- Adjust to be the name of your module for JARs etc.: -->
+    <property name="name" value="nblayoutpack"/>
+    <!-- Location of sources (classpath root): -->
+    <property name="src" location="${basedir}/src"/>
+    <property name="output" location="${basedir}/../output"/>
+    <!-- Package prefix of sources, e.g. "org/netbeans/modules/mymodule": -->
+    <property name="package" value="de/berlios/nblayoutpack/formlayout"/>
+
+  <target name="init" unless="buildnumber">
+    <tstamp>
+      <format property="buildnumber" pattern="yyyyMMdd.HHmm"/>
+      <format property="buildtimestamp" pattern="yyyy'/'MM'/'dd' 'HH':'mm':'ss"/>
+    </tstamp>
+    <property name="impl.version" value="${spec.version}.${buildnumber}"/>
+    <mkdir dir="${output}"/>
+  </target>
+
+    <target name="compile" depends="init">
+        <javac srcdir="${src}" destdir="${src}">
+            <include name="${package}/"/>
+            <classpath>
+                <!-- Whatever you need, based on your dependencies. -->
+                <pathelement location="${nb}/lib/openide.jar"/>
+                <pathelement location="${nb}/lib/openide-loaders.jar"/>
+                <pathelement location="${nb}/modules/form.jar"/>
+                <pathelement location="lib/forms-1.0.5.jar"/>
+            </classpath>
+        </javac>
+    </target>
+
+    <target name="jars" depends="compile">
+        <mkdir dir="${output}/netbeans/modules"/>
+        <jar jarfile="${output}/netbeans/modules/${name}.jar" manifest="nb3.6/manifest.mf" compress="true">
+            <manifest>
+                <attribute name="OpenIDE-Module-Specification-Version" value="${spec.version}"/>
+                <attribute name="OpenIDE-Module-Implementation-Version" value="${impl.version}"/>
+            </manifest>
+            <fileset dir="${src}">
+                <include name="${package}/"/>
+                <exclude name="**/*.java"/>
+                <exclude name="**/*.form"/>
+                <exclude name="**/.nbattrs"/>
+            </fileset>
+        </jar>
+    </target>
+
+    <target name="all" depends="clean,jars" description="Build the module.">
+      <mkdir dir="${output}/netbeans/modules/ext/nblayoutpack"/>
+      <copy todir="${output}/netbeans/modules/ext/nblayoutpack">
+        <fileset dir="lib">
+          <include name="*.jar"/>
+        </fileset>
+      </copy>
+    </target>
+
+    <!-- This target will only work *inside* the IDE! -->
+    <target name="reload" depends="all" description="Test the module inside the running IDE.">
+<!--
+        <nbinstaller module="netbeans/modules/${name}.jar" action="reinstall"/>
+-->
+        <!-- If you have some Class-Path extensions, you might want to test changes to these as well. -->
+        <!-- To do so, try: -->
+      <mkdir dir="${output}/reload"/>
+      <zip zipfile="${output}/reload/${name}.jar" compress="true">
+        <zipfileset src="${output}/netbeans/modules/${name}.jar"/>
+        <zipfileset src="${output}/netbeans/modules/ext/nblayoutpack/forms-1.0.5.jar">
+          <exclude name="META-INF/MANIFEST.MF"/>
+        </zipfileset>
+      </zip>
+      <nbinstaller module="${output}/reload/${name}.jar" action="reinstall"/>
+    </target>
+
+    <target name="nbm" depends="all" description="Prepare the module for distribution via Auto Update.">
+        <taskdef name="makenbm" classname="org.netbeans.nbbuild.MakeNBM" classpath="${nbantext.jar}"/>
+        <makenbm file="${output}/${name}-nb3.6-${impl.version}.nbm"
+                 topdir="${output}"
+                 module="${output}/netbeans/modules/${name}.jar"
+                 needsrestart="false"
+                 homepage="http://nblayoutpack.berlios.de/"
+                 distribution="http://nblayoutpack.berlios.de/">
+          <license file="license.txt"/>
+        </makenbm>
+    </target>
+
+    <target name="clean" description="Clean all build products.">
+        <delete>
+            <fileset dir="${src}">
+                <include name="${package}/*.class"/>
+            </fileset>
+        </delete>
+        <delete dir="${output}"/>
+    </target>
+
+</project>

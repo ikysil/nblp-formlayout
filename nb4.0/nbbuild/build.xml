@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+                Sun Public License Notice
+
+The contents of this file are subject to the Sun Public License
+Version 1.0 (the "License"). You may not use this file except in
+compliance with the License. A copy of the License is available at
+http://www.sun.com/
+
+The Original Code is NetBeans. The Initial Developer of the Original
+Code is Sun Microsystems, Inc. Portions Copyright 1997-2004 Sun
+Microsystems, Inc. All Rights Reserved.
+-->
+
+<project name="nbbuild" default="all" basedir=".">
+  <import file="cluster-scripts/cluster.xml"/>
+
+  <target name="all" depends="netbeans-all" description="Build all the nbms in the cluster."/>
+
+  <!-- inherited targets -->
+  <!--
+  compile-all: compiles all your modules
+  jar-all: creates module jars for all your modules
+  netbeans-all: installs all your modules to $NETBEANS_HOME
+  nbm-all: makes NBM files of all your modules, puts them in nbbuild/nbms/
+  javadoc-all: generates javadocs for all your modules
+  test-all: runs junit tests for all your modules:
+  clean-all: runs 'clean' in all your modules
+  clean: same as clean-all
+  real-clean: cleans up everything in nbbuild/, as well as clean-all
+  cluster-zip: Zips up the whole cluster (after building with netbeans-all) into nbbuild/build/
+  sanity-check: Builds all modules, then starts netbeans for a brief period, then shuts down
+                (Useful for automated builds)
+  tryme: Builds all modules, then starts netbeans, optionally in debug mode
+  tryme-debg: forced debug mode with the tryme target
+  -->
+
+  <!-- Add your own stuff here ... -->
+
+</project>

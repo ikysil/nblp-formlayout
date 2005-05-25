@@ -1,0 +1,230 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+                Sun Public License Notice
+
+The contents of this file are subject to the Sun Public License
+Version 1.0 (the "License"). You may not use this file except in
+compliance with the License. A copy of the License is available at
+http://www.sun.com/
+
+The Original Code is NetBeans. The Initial Developer of the Original
+Code is Sun Microsystems, Inc. Portions Copyright 1997-2004 Sun
+Microsystems, Inc. All Rights Reserved.
+-->
+
+<project name="cluster" default="tryme" basedir="..">
+  <import file="../module-scripts/default.xml"/>
+
+  <target name="check-for-jdk-1.4">
+    <available property="have-jdk-1.4" classname="java.lang.CharSequence"/>
+  </target>
+  <target name="assure-jdk-1.4" depends="check-for-jdk-1.4" unless="have-jdk-1.4">
+    <fail>You need JDK 1.4 or higher to build NetBeans.</fail>
+  </target>
+
+  <target name="init-module-list" depends="assure-jdk-1.4">
+    <!-- Define modules. -->
+    <!-- The following is not permitted by Ant: -->
+    <!-- <property name="modules" value="${config.modules.${clustername}}"/> -->
+    <!-- So this is a little trick to do it anyway. -->
+    <echo file="moduledefs-tmp.properties">modules=$${cluster.${clustername}}</echo>
+    <property file="moduledefs-tmp.properties"/>
+    <property name="allmodules" value="${modules}"/>
+  </target>
+
+  <target name="set-buildnumber" unless="buildnumber">
+    <tstamp>
+    	<format property="buildnumber" pattern="yyMMdd"/>
+    </tstamp>
+  </target>
+
+  <target name="init" depends="default.init,init-module-list,set-buildnumber">
+    <taskdef name="for-each" classname="org.netbeans.nbbuild.ForEach" classpath="lib/nbantext.jar"/>
+
+    <!-- Overridable. Note: need not necessarily be a number at all): -->
+    <property name="buildnum" value="dev-${buildnumber}"/>
+    <property name="sanitystart.args" value="-J-Dnetbeans.close=true ${sanitystart.args.additional}"/>
+  </target>
+
+  <macrodef name="resolve">
+    <attribute name="name"/>
+    <attribute name="property"/>
+    <sequential>
+      <property name="@{name}" value="${@{property}}"/>
+    </sequential>
+  </macrodef>
+
+  <target name="cluster-zip" depends="netbeans-all">
+    <taskdef name="setclusterpatternset" classname="org.netbeans.nbbuild.SetClusterPatternSet" classpath="lib/nbantext.jar"/>
+    <taskdef name="setcluster" classname="org.netbeans.nbbuild.SetCluster" classpath="lib/nbantext.jar"/>
+    <loadproperties srcFile="user.cluster.properties" />
+    <loadproperties srcFile="cluster-scripts/cluster.properties" />
+    <loadproperties srcFile="cluster-scripts/cluster-description.properties" />
+    <loadproperties srcFile="module-scripts/directories.properties" />
+    <setcluster cluster="${user.cluster}" name="one.cluster.dir" />
+    
+    <setclusterpatternset cluster="${user.cluster}" name="${user.cluster}.files" trackingpath="${netbeans.dest.dir}" clusterdir="${one.cluster.dir}"/>
+    
+    <property name="zipcluster.file" value="${user.cluster}"/>
+    <mkdir dir="${netbeans.build.dir}/zips"/>
+    <zip destfile="${netbeans.build.dir}/zips/${zipcluster.file}-${buildnum}.zip" update="true" duplicate="preserve">
+      <zipfileset dir="${netbeans.dest.dir}" filemode="755">
+        <include name="${one.cluster.dir}/${nb.bin.dir}/nbexec"/>
+      </zipfileset>
+      <zipfileset dir="${netbeans.dest.dir}">
+        <patternset refID="${user.cluster}.files"/>
+      </zipfileset>
+    </zip>
+  </target>
+
+  <target name="sanity-check" depends="testuserdir-delete,sanity-start" description="Test whether the build can start up without problems."/>
+  <target name="testuserdir-delete" depends="init">
+    <delete dir="${test.user.dir}"/>
+  </target>
+  <target name="sanity-start" depends="netbeans-all">
+    <mkdir dir="${test.user.dir}"/>
+    <echo>Starting the IDE as a sanity check...</echo>
+    <!-- XXX better would be to scan start log for stacktraces and just show those; -->
+    <!-- possibly after filtering for duplicates or something like this. -->
+    <!-- Timeout is ten minutes; should be enough for valid start, while preventing -->
+    <!-- a deadlock from hanging an automated build: -->
+    <exec os="Windows NT Windows 95 Windows 98 Windows 2000 Windows XP" executable="${netbeans.dest.dir}/platform4/lib/nbexec.exe" failonerror="yes" timeout="600000">
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${sanitystart.args}"/>
+    </exec>
+    <exec os="Linux SunOS Solaris Mac OS X" dir="." executable="sh" failonerror="yes" timeout="600000">
+      <arg value="${netbeans.dest.dir}/platform4/lib/nbexec"/>
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${sanitystart.args}"/>
+    </exec>
+    <echo>Finished starting the IDE, pay attention to any reported errors.</echo>
+  </target>
+
+  <target name="check-for-build"  >
+    <available property="have-build" file="${netbeans.dest.dir}/bin/netbeans"/>
+  </target>
+
+  <target name="tryme" depends="netbeans-all,tryme-debug,tryme-run"
+          description="Try running the IDE interactively (build it first if needed).
+It is possible to use -Ddebug.port=3234 -Ddebug.pause=y to start the system in debug mode" 
+   />
+          
+          
+  <target name="tryme-run" depends="init" unless="debug.port" >
+    <exec os="Windows NT Windows 95 Windows 98 Windows 2000 Windows XP" executable="${netbeans.dest.dir}/platform4/lib/nbexec.exe" failonerror="yes">
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${tryme.args}"/>
+    </exec>
+    <exec os="Linux SunOS Solaris" dir="." executable="sh" failonerror="yes">
+      <arg value="${netbeans.dest.dir}/platform4/lib/nbexec"/>
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${tryme.args}"/>
+    </exec>
+    <exec os="Mac OS X" dir="." executable="sh" failonerror="yes">
+      <arg value="${netbeans.dest.dir}/platform4/lib/nbexec"/>
+      <arg value="--jdkhome"/>
+      <arg file="/Library/Java/Home"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${tryme.args}"/>
+    </exec>
+  </target>
+  
+  <target name="tryme-debug" depends="init" if="debug.port" >
+    <property name="debug.pause" value="n" />
+  
+    <exec os="Windows NT Windows 95 Windows 98 Windows 2000 Windows XP" executable="${netbeans.dest.dir}/platform4/lib/nbexec.exe" failonerror="yes">
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${tryme.args}"/>
+      <arg line="-J-Xdebug -J-Xnoagent -J-Xrunjdwp:transport=dt_socket,suspend=${debug.pause},server=y,address=${debug.port}" />
+    </exec>
+    <exec os="Linux SunOS Solaris Mac OS X" dir="." executable="sh" failonerror="yes">
+      <arg value="${netbeans.dest.dir}/platform4/lib/nbexec"/>
+      <arg value="--jdkhome"/>
+      <arg file="${jdkhome}"/>
+      <arg value="--userdir"/>
+      <arg file="${test.user.dir}"/>
+      <arg value="--clusters"/>
+      <arg file="${test.cluster.list}"/>
+      <arg line="${tryme.args}"/>
+      <arg line="-J-Xdebug -J-Xnoagent -J-Xrunjdwp:transport=dt_socket,suspend=${debug.pause},server=y,address=${debug.port}" />
+    </exec>
+  </target>
+
+  <target name="real-clean" depends="clean,testuserdir-delete"
+          description="Clean everything possible.">
+    <echo message="Cleaning old builds..."/>
+
+    <!-- This step must be last: -->
+    <echo message="Cleaning NetBeans-specific Ant extensions..."/>
+    <delete file="moduledefs-tmp.properties"/>
+    <delete dir="nbms" failonerror="false"/>
+  </target>
+  
+  <target name="clean" depends="clean-all"
+          description="Run 'clean' on all the modules in the cluster.">
+    <echo message="Run `ant real-clean' if desired."/>
+  </target>
+
+
+  <!-- Delegating targets -->
+
+  <target name="compile-all" depends="init">
+      <for-each startdir=".." target="compile" locations="${allmodules}"/>
+  </target>
+
+  <target name="jar-all" depends="init">
+      <for-each startdir=".." target="jar" locations="${allmodules}"/>
+  </target>
+
+  <target name="netbeans-all" depends="init">
+      <for-each startdir=".." target="netbeans" locations="${allmodules}"/>
+  </target>
+
+  <target name="javadoc-all" depends="init">
+      <for-each startdir=".." target="javadoc" locations="${allmodules}"/>
+  </target>
+
+  <target name="test-all" depends="init">
+      <for-each startdir=".." target="test" locations="${allmodules}"/>
+  </target>
+
+  <target name="clean-all" depends="init">
+      <for-each startdir=".." target="clean" locations="${allmodules}"/>
+  </target>
+
+  <!-- Puts all the nbm's in nbbuild/nbms/ -->
+  <target name="nbm-all" depends="init">
+      <mkdir dir="nbms"/>
+      <property name="nbm.target.dir" location="nbms"/>
+      <for-each startdir=".." target="nbm" locations="${allmodules}"/>
+  </target>
+
+</project>

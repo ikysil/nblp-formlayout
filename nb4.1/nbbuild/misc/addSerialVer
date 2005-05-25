@@ -1,0 +1,109 @@
+#
+#
+#
+if test "$#" -eq "0"; then
+  LIST=*
+else
+  LIST=$*
+fi
+
+# runs serialver and waits 3s for it to finish
+# then it kills it
+runSerialVer () {
+  # computes the serializable value and throws a signal
+  java -ms8m sun.tools.serialver.SerialVer $1 2>/dev/null&
+  SVPID=$!
+  
+  # sleep 3s and inform parent that time is up
+  sleep 3 && kill $SVPID 2>/dev/null &
+  SLPID=$!
+
+  # waits till the serial version number is computed
+  wait $SVPID
+
+  # kill timer
+  kill $SLPID 2>/dev/null
+}
+
+
+# compute serial version UID for a class,
+# if not serializable empty string is returned
+# otherwise string for initialization is given back
+computeUID () {
+  RES=`runSerialVer $1`
+  expr "$RES" : "$1: *\(.*;\)" 
+}
+
+AlphaNum="[A-Za-z\.0-9/]"
+
+
+find $LIST -name "*.class" | while read ClassFile; do
+  echo Working on $ClassFile
+
+  # 0 if not inner class 
+  InnerClass=`expr index $ClassFile \$`
+
+  Class=`tr "/" "." <<KONEC
+$ClassFile
+KONEC
+`
+  Class=`basename $Class ".class"`
+  # name of the class (if innner than name of the inner class)
+  ClassName=`tr "$." "//" <<KONEC
+$Class
+KONEC
+`
+  ClassName=`basename $ClassName`
+
+
+  # test if it is not anonymous innerclass
+  if test "$ClassName" -ge "0" 2>/dev/null; then
+    echo Anonymous inner class $Class
+  else
+    JavaFile=`expr $ClassFile : "\($AlphaNum*\).*\.class"`
+    JavaFile=$JavaFile".java"
+  
+    # compute UID for Class
+    uid=`computeUID $Class`
+    if test -n "$uid"; then
+      # there should be the UID
+      # try to see if it is there
+      if ! grep "$uid" $JavaFile >/dev/null; then
+        STOP=""
+        if ! test "0" -eq "$InnerClass"; then
+          # if inner class, test wheter it is static
+          if ! grep "static.*class *$ClassName" $JavaFile >/dev/null; then
+            echo Is not static inner class
+            STOP=true
+          fi
+        fi
+
+        if test -z "$STOP"; then
+          # we have to add it
+          echo Need to add the serialVersionUID
+          sed -e "/ class *$ClassName/a\\
+          /** generated Serialized Version UID */\\
+          $uid" <$JavaFile >/tmp/keke
+          # compare files
+          if diff -q /tmp/keke $JavaFile >/dev/null; then
+            # are same
+            echo Error files /tmp/keke and $JavaFile are same
+            grep  "$ClassName" $JavaFile
+            exit 1
+          fi
+          # overrides the original
+          mv /tmp/keke $JavaFile
+          # updated file to list of files
+          echo $JavaFile >>updated
+          echo Successfully Updated.
+        fi  
+      else
+        echo serialVersionUID already there
+      fi
+    else
+      echo Is not serializable
+    fi
+  fi
+  
+  rm $ClassFile
+done

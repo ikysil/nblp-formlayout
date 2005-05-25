@@ -1,0 +1,938 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+
+<Form version="1.1" type="org.netbeans.modules.form.forminfo.JPanelFormInfo">
+  <AuxValues>
+    <AuxValue name="designerSize" type="java.awt.Dimension" value="-84,-19,0,5,115,114,0,18,106,97,118,97,46,97,119,116,46,68,105,109,101,110,115,105,111,110,65,-114,-39,-41,-84,95,68,20,2,0,2,73,0,6,104,101,105,103,104,116,73,0,5,119,105,100,116,104,120,112,0,0,1,57,0,0,1,-37"/>
+  </AuxValues>
+  <SubComponents>
+    <Component class="javax.swing.JLabel" name="specLabel">
+      <Properties>
+        <Property name="displayedMnemonic" type="int" value="67"/>
+        <Property name="labelFor" type="java.awt.Component" editor="org.netbeans.modules.form.ComponentChooserEditor">
+          <ComponentRef name="specField"/>
+        </Property>
+        <Property name="text" type="java.lang.String" value="Column/row specification:"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JTextField" name="specField">
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="specFieldActionPerformed"/>
+      </Events>
+    </Component>
+    <Container class="javax.swing.JScrollPane" name="jScrollPane1">
+      <Properties>
+        <Property name="verticalScrollBarPolicy" type="int" value="22"/>
+      </Properties>
+
+      <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
+      <SubComponents>
+        <Component class="javax.swing.JTable" name="layoutTable">
+          <Properties>
+            <Property name="model" type="javax.swing.table.TableModel" editor="org.netbeans.modules.form.editors2.TableModelEditor">
+              <Table columnCount="2" rowCount="2">
+                <Column editable="true" title="Title 1" type="java.lang.Object"/>
+                <Column editable="true" title="Title 2" type="java.lang.Object"/>
+              </Table>
+            </Property>
+          </Properties>
+          <Events>
+            <EventHandler event="keyPressed" listener="java.awt.event.KeyListener" parameters="java.awt.event.KeyEvent" handler="layoutTableKeyPressed"/>
+          </Events>
+        </Component>
+      </SubComponents>
+    </Container>
+    <Component class="javax.swing.JButton" name="addButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/add.png"/>
+        </Property>
+        <Property name="mnemonic" type="int" value="65"/>
+        <Property name="toolTipText" type="java.lang.String" value="Add"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="horizontalTextPosition" type="int" value="0"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="addButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="deleteButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/remove.png"/>
+        </Property>
+        <Property name="mnemonic" type="int" value="68"/>
+        <Property name="toolTipText" type="java.lang.String" value="Delete"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="deleteButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="insertBeforeButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/insertbefore.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Insert before"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertBeforeButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="insertAfterButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/insertafter.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Insert after"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="insertAfterButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="moveUpButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/moveup.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Move up"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="moveDownButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/movedown.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Move down"/>
+        <Property name="focusable" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="mergeUpButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/mergeup.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Merge up"/>
+        <Property name="actionCommand" type="java.lang.String" value="mergeUp"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+    <Component class="javax.swing.JButton" name="mergeDownButton">
+      <Properties>
+        <Property name="icon" type="javax.swing.Icon" editor="org.openide.explorer.propertysheet.editors.IconEditor">
+          <Image iconType="3" name="/de/berlios/nblayoutpack/formlayout/resources/mergedown.png"/>
+        </Property>
+        <Property name="toolTipText" type="java.lang.String" value="Merge down"/>
+        <Property name="actionCommand" type="java.lang.String" value="mergeDown"/>
+        <Property name="focusable" type="boolean" value="false"/>
+        <Property name="enabled" type="boolean" value="false"/>
+      </Properties>
+    </Component>
+  </SubComponents>
+  <LayoutCode>
+    <CodeStatement>
+      <CodeExpression id="1__formLayoutInstance">
+        <CodeVariable name="_formLayoutInstance" type="4096" declaredType="com.jgoodies.forms.layout.FormLayout"/>
+        <ExpressionOrigin>
+          <ExpressionProvider type="CodeConstructor">
+            <CodeConstructor class="com.jgoodies.forms.layout.FormLayout" parameterTypes="java.lang.String, java.lang.String"/>
+          </ExpressionProvider>
+          <Parameters>
+            <CodeExpression id="2">
+              <ExpressionOrigin>
+                <Value type="java.lang.String" value="4dlu,250px:grow,8dlu,p,4dlu,p,4dlu"/>
+              </ExpressionOrigin>
+            </CodeExpression>
+            <CodeExpression id="3">
+              <ExpressionOrigin>
+                <Value type="java.lang.String" value="4dlu,p,4dlu,p,8dlu,p,4dlu,p,8dlu,p,4dlu,p,0:grow,4dlu"/>
+              </ExpressionOrigin>
+            </CodeExpression>
+          </Parameters>
+        </ExpressionOrigin>
+      </CodeExpression>
+      <StatementProvider type="CodeExpression">
+        <CodeExpression id="1__formLayoutInstance"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="2"/>
+        <CodeExpression id="3"/>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="1__formLayoutInstance"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="setColumnGroups" class="com.jgoodies.forms.layout.FormLayout" parameterTypes="[[I"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="4">
+          <ExpressionOrigin>
+            <Value type="[[I" editor="de.berlios.nblayoutpack.formlayout.editors.ColumnGroupsEditor">
+              <SerializedValue value="-84,-19,0,5,117,114,0,3,91,91,73,23,-9,-28,79,25,-113,-119,60,2,0,0,120,112,0,0,0,1,117,114,0,2,91,73,77,-70,96,38,118,-22,-78,-91,2,0,0,120,112,0,0,0,2,0,0,0,4,0,0,0,6"/>
+            </Value>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="1__formLayoutInstance"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="setRowGroups" class="com.jgoodies.forms.layout.FormLayout" parameterTypes="[[I"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="5">
+          <ExpressionOrigin>
+            <Value type="[[I" editor="de.berlios.nblayoutpack.formlayout.editors.RowGroupsEditor">
+              <SerializedValue value="-84,-19,0,5,117,114,0,3,91,91,73,23,-9,-28,79,25,-113,-119,60,2,0,0,120,112,0,0,0,1,117,114,0,2,91,73,77,-70,96,38,118,-22,-78,-91,2,0,0,120,112,0,0,0,0"/>
+            </Value>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6">
+        <ExpressionOrigin>
+          <ExpressionProvider type="ComponentRef">
+            <ComponentRef name="."/>
+          </ExpressionProvider>
+        </ExpressionOrigin>
+      </CodeExpression>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="setLayout" class="java.awt.Container" parameterTypes="java.awt.LayoutManager"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="1__formLayoutInstance"/>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="7_specLabel">
+          <CodeVariable name="specLabel" type="8194" declaredType="javax.swing.JLabel"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="specLabel"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="8">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="9">
+                <ExpressionOrigin>
+                  <Value type="int" value="2"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="10">
+                <ExpressionOrigin>
+                  <Value type="int" value="2"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="11">
+                <ExpressionOrigin>
+                  <Value type="int" value="5"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="12">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="13">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="14">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="15">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="16_specField">
+          <CodeVariable name="specField" type="8194" declaredType="javax.swing.JTextField"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="specField"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="17">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="18">
+                <ExpressionOrigin>
+                  <Value type="int" value="2"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="19">
+                <ExpressionOrigin>
+                  <Value type="int" value="4"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="20">
+                <ExpressionOrigin>
+                  <Value type="int" value="5"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="21">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="22">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="23">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="24">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="25_jScrollPane1">
+          <CodeVariable name="jScrollPane1" type="8194" declaredType="javax.swing.JScrollPane"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="jScrollPane1"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="26">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="27">
+                <ExpressionOrigin>
+                  <Value type="int" value="2"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="28">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="29">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="30">
+                <ExpressionOrigin>
+                  <Value type="int" value="8"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="31">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="32">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="33">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="34_addButton">
+          <CodeVariable name="addButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="addButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="35">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="36">
+                <ExpressionOrigin>
+                  <Value type="int" value="4"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="37">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="38">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="39">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="40">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="41">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="42">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="43_deleteButton">
+          <CodeVariable name="deleteButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="deleteButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="44">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="45">
+                <ExpressionOrigin>
+                  <Value type="int" value="4"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="46">
+                <ExpressionOrigin>
+                  <Value type="int" value="8"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="47">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="48">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="49">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="50">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,5"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="51">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="52_insertBeforeButton">
+          <CodeVariable name="insertBeforeButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="insertBeforeButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="53">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="54">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="55">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="56">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="57">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="58">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="59">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="60">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="61_insertAfterButton">
+          <CodeVariable name="insertAfterButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="insertAfterButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="62">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="63">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="64">
+                <ExpressionOrigin>
+                  <Value type="int" value="8"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="65">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="66">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="67">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="68">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="69">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="70_moveUpButton">
+          <CodeVariable name="moveUpButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="moveUpButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="71">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="72">
+                <ExpressionOrigin>
+                  <Value type="int" value="4"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="73">
+                <ExpressionOrigin>
+                  <Value type="int" value="10"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="74">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="75">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="76">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="77">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="78">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="79_moveDownButton">
+          <CodeVariable name="moveDownButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="moveDownButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="80">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="81">
+                <ExpressionOrigin>
+                  <Value type="int" value="4"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="82">
+                <ExpressionOrigin>
+                  <Value type="int" value="12"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="83">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="84">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="85">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="86">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="87">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="88_mergeUpButton">
+          <CodeVariable name="mergeUpButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="mergeUpButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="89">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="90">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="91">
+                <ExpressionOrigin>
+                  <Value type="int" value="10"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="92">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="93">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="94">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="95">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="96">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+    <CodeStatement>
+      <CodeExpression id="6"/>
+      <StatementProvider type="CodeMethod">
+        <CodeMethod name="add" class="java.awt.Container" parameterTypes="java.awt.Component, java.lang.Object"/>
+      </StatementProvider>
+      <Parameters>
+        <CodeExpression id="97_mergeDownButton">
+          <CodeVariable name="mergeDownButton" type="8194" declaredType="javax.swing.JButton"/>
+          <ExpressionOrigin>
+            <ExpressionProvider type="ComponentRef">
+              <ComponentRef name="mergeDownButton"/>
+            </ExpressionProvider>
+          </ExpressionOrigin>
+        </CodeExpression>
+        <CodeExpression id="98">
+          <ExpressionOrigin>
+            <ExpressionProvider type="CodeConstructor">
+              <CodeConstructor class="com.jgoodies.forms.layout.CellConstraints" parameterTypes="int, int, int, int, com.jgoodies.forms.layout.CellConstraints$Alignment, com.jgoodies.forms.layout.CellConstraints$Alignment, java.awt.Insets"/>
+            </ExpressionProvider>
+            <Parameters>
+              <CodeExpression id="99">
+                <ExpressionOrigin>
+                  <Value type="int" value="6"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="100">
+                <ExpressionOrigin>
+                  <Value type="int" value="12"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="101">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="102">
+                <ExpressionOrigin>
+                  <Value type="int" value="1"/>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="103">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.HAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="104">
+                <ExpressionOrigin>
+                  <Value type="com.jgoodies.forms.layout.CellConstraints$Alignment" editor="de.berlios.nblayoutpack.formlayout.editors.VAlignEditor">
+                    <SerializedValue value="-84,-19,0,5,115,114,0,51,99,111,109,46,106,103,111,111,100,105,101,115,46,102,111,114,109,115,46,108,97,121,111,117,116,46,67,101,108,108,67,111,110,115,116,114,97,105,110,116,115,36,65,108,105,103,110,109,101,110,116,101,21,-91,54,126,-41,-107,103,2,0,1,73,0,7,111,114,100,105,110,97,108,120,112,0,0,0,0"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+              <CodeExpression id="105">
+                <ExpressionOrigin>
+                  <Value type="java.awt.Insets" editor="org.netbeans.beaninfo.editors.InsetsEditor">
+                    <Insets value="[0, 0, 0, 0]"/>
+                  </Value>
+                </ExpressionOrigin>
+              </CodeExpression>
+            </Parameters>
+          </ExpressionOrigin>
+        </CodeExpression>
+      </Parameters>
+    </CodeStatement>
+  </LayoutCode>
+</Form>

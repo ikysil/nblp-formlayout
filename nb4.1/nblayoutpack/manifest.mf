@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.nblayoutpack.formlayout
+OpenIDE-Module-Localizing-Bundle: de/berlios/nblayoutpack/formlayout/Bundle.properties
+OpenIDE-Module-Layer: de/berlios/nblayoutpack/formlayout/nb4.0/layer.xml
+OpenIDE-Module-Install: de/berlios/nblayoutpack/formlayout/FormLayoutModule.class
+OpenIDE-Module-Module-Dependencies: org.netbeans.modules.form/2 = 200505031930
+Class-Path: ext/nblayoutpack/forms-1.0.5.jar

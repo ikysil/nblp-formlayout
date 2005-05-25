@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?> 
+<project name="default-properties" default="netbeans" basedir=".">
+  <dirname property="nb_all" file="${ant.file.default-properties}/../.."/>
+
+  <!-- 
+  Read user's settings 
+  Note: user/site combination is so that you can check site.build.properties
+  into your source tree for everyone to use, and user.build.properties can contain
+  properties specific to your personal setup.
+  -->
+  <property file="${nb_all}/nbbuild/user.build.properties"/>
+  <property file="${nb_all}/nbbuild/site.build.properties"/>
+
+  <property name="homepage.base" value="netbeans.org"/>
+  <property name="dist.base" value="www.netbeans.org/download/nbms/40"/>
+  <property name="license.file" location="${nb_all}/nbbuild/module-scripts/standard-nbm-license.txt"/>
+  <property name="nbm_alias" value="nb_ide"/>
+  <property name="build.sysclasspath" value="ignore"/>
+
+  <property name="user.clusters.list.file" location="${nb_all}/nbbuild/user.cluster.properties"/>
+  <property name="clusters.list.file" location="${nb_all}/nbbuild/cluster-scripts/cluster.properties"/>
+  <property name="netbeans.build.dir" location="${nb_all}/nbbuild/build"/>
+  <property name="moduleCluster.file" location="${netbeans.dest.dir}/moduleCluster.properties"/>
+  <property name="directoryList.file" location="${nb_all}/nbbuild/module-scripts/directories.properties"/>
+  <property name="modulesxml.file" location="${nb_all}/nbbuild/modules.xml"/>
+
+  <property file="${user.clusters.list.file}"/>
+  <property file="${clusters.list.file}"/>
+  <property file="${moduleCluster.file}"/>
+  <property file="${directoryList.file}"/>
+
+</project>
