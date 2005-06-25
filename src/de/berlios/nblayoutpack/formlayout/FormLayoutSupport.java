@@ -663,7 +663,7 @@ public class FormLayoutSupport extends AbstractLayoutSupport{
     boolean isValid = true;
     if(ev.getPropertyName().equals("CellConstraints.gridX")){
       int gridX = ((Integer)ev.getNewValue()).intValue();
-      isValid = (gridX > 1) && (gridX + flConstr.gridWidth - 1 <= formLayout.getColumnCount());
+      isValid = (gridX > 0) && (gridX + flConstr.gridWidth - 1 <= formLayout.getColumnCount());
     }
     if(ev.getPropertyName().equals("CellConstraints.gridWidth")){
       int gridWidth = ((Integer)ev.getNewValue()).intValue();
@@ -671,7 +671,7 @@ public class FormLayoutSupport extends AbstractLayoutSupport{
     }
     if(ev.getPropertyName().equals("CellConstraints.gridY")){
       int gridY = ((Integer)ev.getNewValue()).intValue();
-      isValid = (gridY > 1) && (gridY + flConstr.gridHeight - 1 <= formLayout.getRowCount());
+      isValid = (gridY > 0) && (gridY + flConstr.gridHeight - 1 <= formLayout.getRowCount());
     }
     if(ev.getPropertyName().equals("CellConstraints.gridHeight")){
       int gridHeight = ((Integer)ev.getNewValue()).intValue();
