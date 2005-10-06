@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet type="text/xml" href="http://openide.netbeans.org/fs/filesystem.xsl"?>
+<!DOCTYPE filesystem PUBLIC "-//NetBeans//DTD Filesystem 1.1//EN" "http://www.netbeans.org/dtds/filesystem-1_1.dtd">
+<filesystem>
+
+  <folder name="FormDesignerPalette">
+    <folder name="Layouts">
+        <file name="FormLayout.palette_item" url="palette/FormLayout.palette_item"/>
+    </folder>
+    </folder>
+    <folder name="org-netbeans-api-project-libraries">
+    <folder name="Libraries">
+      <file name="formlayout.xml" url="formlayout.xml"/>
+    </folder>
+  </folder>
+
+</filesystem>

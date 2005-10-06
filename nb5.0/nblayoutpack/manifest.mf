@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+OpenIDE-Module: de.berlios.nblayoutpack.formlayout/2
+OpenIDE-Module-Localizing-Bundle: de/berlios/nblayoutpack/formlayout/Bundle.properties
+OpenIDE-Module-Layer: de/berlios/nblayoutpack/formlayout/nb5.x/layer.xml
+OpenIDE-Module-Install: de/berlios/nblayoutpack/formlayout/FormLayoutModule.class
+OpenIDE-Module-Specification-Version: 2.0.2
+

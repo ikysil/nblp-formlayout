@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://www.netbeans.org/ns/project/1">
+    <type>org.netbeans.modules.apisupport.project</type>
+    <configuration>
+        
+    <data xmlns="http://www.netbeans.org/ns/nb-module-project/2">
+            <code-name-base>de.berlios.nblayoutpack.formlayout</code-name-base>
+            <standalone/>
+            
+            <module-dependencies>
+                <dependency>
+                    <code-name-base>org.netbeans.modules.form</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <release-version>2</release-version>
+                        <implementation-version/>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.explorer</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>6.2</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.modules</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>6.2</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.nodes</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>6.2</specification-version>
+                    </run-dependency>
+                </dependency>
+                <dependency>
+                    <code-name-base>org.openide.util</code-name-base>
+                    <build-prerequisite/>
+                    <compile-dependency/>
+                    <run-dependency>
+                        <specification-version>6.2</specification-version>
+                    </run-dependency>
+                </dependency>
+            </module-dependencies>
+            <class-path-extension>
+              <!-- Deployed path, relative to dir containing module: -->
+              <runtime-relative-path>ext/nblayoutpack/forms-1.0.5.jar</runtime-relative-path>
+              <!-- Path of library in your own sources, relative to project basedir: -->
+              <binary-origin>../../lib/forms-1.0.5.jar</binary-origin>
+            </class-path-extension>
+            <public-packages/>
+        </data>
+    </configuration>
+</project>
