@@ -7,8 +7,9 @@
     <folder name="Layouts">
         <file name="FormLayout.palette_item" url="palette/FormLayout.palette_item"/>
     </folder>
-    </folder>
-    <folder name="org-netbeans-api-project-libraries">
+  </folder>
+
+  <folder name="org-netbeans-api-project-libraries">
     <folder name="Libraries">
       <file name="formlayout.xml" url="formlayout.xml"/>
     </folder>

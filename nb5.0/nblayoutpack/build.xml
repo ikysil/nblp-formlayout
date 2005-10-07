@@ -9,9 +9,10 @@
 
     <property file="../../build.properties"/>
     <tstamp>
-      <format property="buildnumbertimestamp" pattern="yyyyMMdd.HHmm"/>
+      <format property="buildnumber" pattern="yyyyMMdd.HHmm"/>
     </tstamp>
-    <property name="impl.version" value="${spec.version}.${buildnumbertimestamp}"/>
+    <property name="impl.version" value="${spec.version}.${buildnumber}"/>
+    <property name="spec.version.base" value="${spec.version}"/>
 
     <target name="netbeans-extra" depends="init">
         <mkdir dir="${cluster}/modules/ext/nblayoutpack"/>
