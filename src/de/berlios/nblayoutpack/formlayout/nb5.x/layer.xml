@@ -4,14 +4,24 @@
 <filesystem>
 
   <folder name="FormDesignerPalette">
-    <folder name="Layouts">
-        <file name="FormLayout.palette_item" url="palette/FormLayout.palette_item"/>
+    <folder name="_Layouts_only_for_internal_use_">
+      <attr name="SystemFileSystem.localizingBundle" stringvalue="de.berlios.nblayoutpack.formlayout.Bundle"/>
+      <file name="FormLayout.palette_item" url="palette/FormLayout.palette_item"/>
     </folder>
   </folder>
 
   <folder name="org-netbeans-api-project-libraries">
     <folder name="Libraries">
       <file name="formlayout.xml" url="formlayout.xml"/>
+    </folder>
+  </folder>
+
+  <!-- form class loader type registration -->
+  <folder name="org-netbeans-modules-form">
+    <folder name="classloader">
+      <folder name="system">
+        <file name="FormLayoutClasses.txt" url="FormLayoutClasses.txt" />
+      </folder>
     </folder>
   </folder>
 

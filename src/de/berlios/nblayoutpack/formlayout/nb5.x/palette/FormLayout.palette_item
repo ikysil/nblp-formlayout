@@ -7,6 +7,6 @@
   <description localizing-bundle="de.berlios.nblayoutpack.formlayout.Bundle"
                display-name-key="Palette/Layouts/com-jgoodies-forms-layout-FormLayout.instance" />
   <classpath>
-      <resource type="library" name="formlayout" />
+      <resource type="library" name="JGoodies Forms 1.0.5" />
   </classpath>
 </palette_item>
