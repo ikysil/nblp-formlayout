@@ -37,7 +37,7 @@ public class FormLayoutSupport extends AbstractLayoutSupport{
   /** The icon for FormLayout. */
   private static String iconURL =
       "de/berlios/nblayoutpack/formlayout/resources/formlayout16.png"; // NOI18N
-  /** The icon for TableLayout. */
+  /** The icon for FormLayout. */
   private static String icon32URL =
       "de/berlios/nblayoutpack/formlayout/resources/formlayout32.png"; // NOI18N
 
@@ -170,11 +170,11 @@ public class FormLayoutSupport extends AbstractLayoutSupport{
   private static final String baseVarName = "_formLayoutInstance";
 
   /** Creates code structures for a new layout manager (opposite to
-   * readInitLayoutCode). As the TableLayout is not a bean, this method must
+   * readInitLayoutCode). As the FormLayout is not a bean, this method must
    * override from AbstractLayoutSupport.
    * @param layoutCode CodeGroup to be filled with relevant
    *        initialization code;
-   * @return new CodeExpression representing the TableLayout
+   * @return new CodeExpression representing the FormLayout
    */
   protected CodeExpression createInitLayoutCode(CodeGroup layoutCode){
     CodeStructure codeStructure = getCodeStructure();
